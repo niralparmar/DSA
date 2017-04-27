@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSATest", "DSATest\DSATest.csproj", "{15209E11-C6D1-434B-8719-5A63CCACB100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleRunner", "ConsoleRunner\ConsoleRunner.csproj", "{8E018FDB-C3A3-41DF-A143-ADEA714A9812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructure", "DataStructure\DataStructure.csproj", "{C51B3A6D-1E39-475E-A2A8-397BF79C737D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15209E11-C6D1-434B-8719-5A63CCACB100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15209E11-C6D1-434B-8719-5A63CCACB100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15209E11-C6D1-434B-8719-5A63CCACB100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15209E11-C6D1-434B-8719-5A63CCACB100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E018FDB-C3A3-41DF-A143-ADEA714A9812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E018FDB-C3A3-41DF-A143-ADEA714A9812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E018FDB-C3A3-41DF-A143-ADEA714A9812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E018FDB-C3A3-41DF-A143-ADEA714A9812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51B3A6D-1E39-475E-A2A8-397BF79C737D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51B3A6D-1E39-475E-A2A8-397BF79C737D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51B3A6D-1E39-475E-A2A8-397BF79C737D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51B3A6D-1E39-475E-A2A8-397BF79C737D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
