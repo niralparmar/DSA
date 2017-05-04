@@ -18,7 +18,7 @@
         }
 
         /// <summary>
-        /// Gets the node at the head of the <see cref="LinkedList{T}"/>.
+        /// Gets the node at the head of the <see cref="LinkedList"/>.
         /// </summary>
         public LinkedListNode Head
         {
@@ -52,9 +52,9 @@
             return mHead == null;
         }
         /// <summary>
-        /// Adds a node to the tail of the <see cref="LinkedListNode"/>.
+        /// Adds a node to the tail of the <see cref="LinkedList"/>.
         /// </summary>
-        /// <param name="item">Item to add to the <see cref="LinkedListNode"/>.</param>
+        /// <param name="item">Item to add to the <see cref="LinkedList"/>.</param>
         /// <remarks>
         /// This method is an O(1) operation, the <see cref="Tail"/> node is always known.
         /// </remarks>
@@ -76,12 +76,12 @@
         }
 
         /// <summary>
-        /// Adds a node to the head of the <see cref="LinkedListNode"/>.
+        /// Adds a node to the head of the <see cref="LinkedList"/>.
         /// </summary>
         /// <remarks>
         /// This method is an O(1) operation, the <see cref="Head"/> node is always known.
         /// </remarks>
-        /// <param name="item">Item to add to the <see cref="LinkedListNode"/>.</param>
+        /// <param name="item">Item to add to the <see cref="LinkedList"/>.</param>
         public void AddFirst(int item)
         {
             LinkedListNode n = new LinkedListNode(item);
@@ -99,14 +99,14 @@
             mCount++;
         }
         /// <summary>
-        /// Adds a node after the specified <see cref="LinkedListNode"/> with the value of item.
+        /// Adds a node after the specified <see cref="LinkedList"/> with the value of item.
         /// </summary>
         /// <remarks>
         /// This method is an O(1) operation, the node to add after and new nodes links are updated without having to perform any
         /// traversal of the linked list.
         /// </remarks>
-        /// <param name="node">Node in <see cref="LinkedListNode"/> to add node after.</param>
-        /// <param name="item">Item to add to <see cref="LinkedListNode"/>.</param>
+        /// <param name="node">Node in <see cref="LinkedList"/> to add node after.</param>
+        /// <param name="item">Item to add to <see cref="LinkedList"/>.</param>
         /// <exception cref="ArgumentNullException"><strong>node</strong> is <strong>null</strong>.</exception>
         public void AddAfter(LinkedListNode node, int item)
         {
