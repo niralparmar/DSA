@@ -13,7 +13,7 @@
         [TestMethod]
         public void IsEmptyTest()
         {
-            LinkedList list = new LinkedList();
+            LinkedList list = TestData.GetLinkedList(0);
 
             Assert.IsTrue(list.IsEmpty());
         }
@@ -24,10 +24,8 @@
         [TestMethod]
         public void AddLastTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(5);
-            list.Add(10);
-            list.Add(15);
+            LinkedList list = TestData.GetLinkedList(new int[] { 5, 10, 15 });
+
             Assert.IsFalse(list.IsEmpty());
             Assert.AreEqual(5, list.Head.Value);
             Assert.AreEqual(10, list.Head.Next.Value);
@@ -40,9 +38,8 @@
         [TestMethod]
         public void HeadTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-
+            LinkedList list = TestData.GetLinkedList(new int[] { 10 });
+           
             Assert.AreEqual(10, list.Head.Value);
         }
 
@@ -52,8 +49,7 @@
         [TestMethod]
         public void TailTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
+            LinkedList list = TestData.GetLinkedList(new int[] { 10 });
 
             Assert.AreEqual(10, list.Tail.Value);
         }
@@ -63,9 +59,7 @@
         [TestMethod]
         public void CountTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-            list.Add(20);
+            LinkedList list = TestData.GetLinkedList(new int[] { 10 ,20 });
             Assert.AreEqual(2, list.Count);
         }
         /// <summary>
@@ -74,13 +68,13 @@
         [TestMethod]
         public void RemoveFirstOneItemInListTest()
         {
-            LinkedList sll = new LinkedList();
+            LinkedList list = TestData.GetEmptyLinkedList();
 
-            sll.RemoveFirst();
+            list.RemoveFirst();
 
-            Assert.AreEqual(0, sll.Count);
-            Assert.IsNull(sll.Head);
-            Assert.IsNull(sll.Tail);
+            Assert.AreEqual(0, list.Count);
+            Assert.IsNull(list.Head);
+            Assert.IsNull(list.Tail);
         }
         /// <summary>
         /// Check to see that when removing the only node in the list that the head and tail pointers are update correctly.
@@ -88,9 +82,7 @@
         [TestMethod]
         public void RemoveOnlyNodeInListTest()
         {
-            LinkedList list = new LinkedList();
-
-            list.Remove(12);
+            LinkedList list = TestData.GetEmptyLinkedList();
 
             Assert.IsNull(list.Head);
             Assert.IsNull(list.Tail);
@@ -103,7 +95,7 @@
         [TestMethod]
         public void RemoveFirstTest()
         {
-            LinkedList list = new LinkedList();
+            LinkedList list = TestData.GetEmptyLinkedList();
 
             list.AddFirst(40);
             list.AddFirst(30);
@@ -124,7 +116,7 @@
         [TestMethod]
         public void RemoveFirstEmptyListTest()
         {
-            LinkedList list = new LinkedList();
+            LinkedList list = TestData.GetEmptyLinkedList();
 
             Assert.IsFalse(list.RemoveFirst());
         }
@@ -135,11 +127,8 @@
         [TestMethod]
         public void ContainsTest()
         {
-            LinkedList list = new LinkedList();
-            list.AddFirst(40);
-            list.AddFirst(30);
-            list.AddFirst(20);
-
+            LinkedList list = TestData.GetLinkedList(new int[] { 40,30,20});
+            
             Assert.IsTrue(list.Contains(20));
             Assert.IsFalse(list.Contains(10));
         }
@@ -151,8 +140,7 @@
         [TestMethod]
         public void RemoveItemFromEmptyLinkedListCollection()
         {
-            LinkedList list = new LinkedList();
-            
+            LinkedList list = TestData.GetEmptyLinkedList();
             Assert.IsFalse(list.Remove(10));
         }
 
@@ -163,11 +151,8 @@
         [TestMethod]
         public void RemoveHeadItemTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-            list.Add(20);
-            list.Add(30);
-
+            LinkedList list = TestData.GetLinkedList(new int[] { 10, 20, 30 });
+            
             bool actual = list.Remove(10);
 
             Assert.AreEqual(20, list.Head.Value);
@@ -183,11 +168,7 @@
         [TestMethod]
         public void RemoveMiddleItemTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-            list.Add(20);
-            list.Add(30);
-
+            LinkedList list = TestData.GetLinkedList(new int[] { 10, 20, 30 });
             bool actual = list.Remove(20);
 
             Assert.AreEqual(30, list.Head.Next.Value);
@@ -204,10 +185,8 @@
         [TestMethod]
         public void RemoveTailItemTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-            list.Add(20);
-            list.Add(30);
+            LinkedList list = TestData.GetLinkedList(new int[] { 10, 20, 30 });
+            
             bool actual = list.Remove(30);
 
             Assert.AreEqual(10, list.Head.Value);
@@ -223,11 +202,8 @@
         [TestMethod]
         public void AddBeforeMiddleNodeTest()
         {
-            LinkedList list = new LinkedList();
-            list.Add(10);
-            list.Add(20);
-            list.Add(30);
-
+            LinkedList list = TestData.GetLinkedList(new int[] { 10, 20, 30 });
+           
             list.AddBefore(list.Head.Next, 15);
 
             Assert.AreEqual(15, list.Head.Next.Value);
@@ -242,7 +218,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddBeforeEmptyListTest()
         {
-            LinkedList list = new LinkedList();
+            LinkedList list = TestData.GetEmptyLinkedList();
 
             list.AddBefore(list.Head, 10);
         }

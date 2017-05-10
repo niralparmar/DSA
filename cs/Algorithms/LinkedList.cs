@@ -4,7 +4,7 @@
 
     public class LinkedList
     {
-        private int GetLinkedListLength(LinkedListNode a)
+        private static int GetLinkedListLength(LinkedListNode a)
         {
             int i = 0;
             while (a != null)
@@ -20,7 +20,7 @@
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public LinkedListNode GetIntersectionNode(LinkedListNode a, LinkedListNode b)
+        public static LinkedListNode GetIntersectionNode(LinkedListNode a, LinkedListNode b)
         {
             int n = GetLinkedListLength(a);
             int m = GetLinkedListLength(b);

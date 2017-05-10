@@ -74,6 +74,27 @@
 
             mCount++;
         }
+        /// <summary>
+        /// Adds a node to the tail of the <see cref="LinkedList"/>.
+        /// </summary>
+        /// <param name="item">Item to add to the <see cref="LinkedList"/>.</param>
+        /// <remarks>
+        /// This method is an O(1) operation, the <see cref="Tail"/> node is always known.
+        /// </remarks>
+        public void Add(LinkedListNode item)
+        {
+            if (IsEmpty())
+            {
+                mHead = item;
+                mTail = item;
+            }
+            else
+            {
+                mTail.Next = item;
+                mTail = item;
+            }
+            mCount++;
+        }
 
         /// <summary>
         /// Adds a node to the head of the <see cref="LinkedList"/>.
