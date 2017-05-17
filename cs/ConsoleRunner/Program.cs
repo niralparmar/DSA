@@ -12,8 +12,20 @@
             list.Add(2);
             list.Add(3);
             list.Add(4);
-          
+            PrintList(list.Head);
             Console.ReadLine();
+        }
+        static void PrintList(LinkedListNode head)
+        {
+            LinkedListNode temp = head;
+            while (temp != null)
+            {
+                Console.Write(temp.Value);
+                if(temp.Next != null){
+                    Console.Write("->");
+                }
+                temp = temp.Next;
+            }
         }
     }
 }

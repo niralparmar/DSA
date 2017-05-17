@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AlgorithmTest\LinkedListTest.cs" />
     <Compile Include="DataStructureTest\LinkedListTest.cs" />
+    <Compile Include="DataStructureTest\DoublyLinkedListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
