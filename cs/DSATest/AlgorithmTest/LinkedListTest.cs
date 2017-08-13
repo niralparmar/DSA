@@ -48,5 +48,15 @@
             Assert.AreEqual(Algorithms.LinkedList.GetIntersectionNode(list1.Head,list2.Head).Value, node11.Value);
 
         }
+        [TestMethod]
+        public void RemoveDupplicateTest()
+        {
+            DataStructure.LinkedList list = TestData.GetLinkedList(new int[] { 1, 2, 3, 1 });
+            Algorithms.LinkedList.RemoveDuplicate(list.Head);
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Head.Next.Value, 2);
+            Assert.AreEqual(list.Head.Next.Next.Value, 3);
+            Assert.AreEqual(list.Head.Next.Next.Next, null);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Algorithms
 {
     using DataStructure;
+    using System.Collections.Generic;
 
     public class LinkedList
     {
@@ -124,10 +125,28 @@
 
             return true;
         }
-        public static LinkedListNode RemoveDuplicate(LinkedListNode a)
+        public static void RemoveDuplicate(LinkedListNode a)
+        {
+            HashSet<int> set = new HashSet<int>();
+            LinkedListNode preious = null;
+
+            while (a != null)
+            {
+                if (set.Contains(a.Value))
+                {
+                    preious.Next = a.Next;
+                }
+                else
+                {
+                    set.Add(a.Value);
+                    preious = a;
+                }
+                a = a.Next;
+            }
+        }
+        public static void SwapNodes(LinkedListNode a)
         {
 
-            return new LinkedListNode(3);
         }
     }
 }

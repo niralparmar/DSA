@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Algorithms\Algorithms.csproj">
+      <Project>{8ea94e6f-5969-4e1c-985a-35c2c5de2000}</Project>
+      <Name>Algorithms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataStructure\DataStructure.csproj">
       <Project>{c51b3a6d-1e39-475e-a2a8-397bf79c737d}</Project>
       <Name>DataStructure</Name>
