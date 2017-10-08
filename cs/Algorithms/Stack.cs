@@ -1,6 +1,6 @@
 ﻿namespace Algorithms
 {
-    //using DataStructure;
+    using DS= DataStructure;
     using System;
     using System.Collections.Generic;
 
@@ -101,6 +101,38 @@
                 result += Math.Min(left[i], right[i]) - A[i];
             }
             return result;
+        }
+
+        //Use only One stack as buffer
+        //if multiply stacks are allowed we could use merge sort/ quick sort 
+        public static Stack<int> Sort(Stack<int> s)
+        {
+            Stack<int> r = new Stack<int>();
+            while (s.Count != 0)
+            {
+                int temp = s.Pop();
+                while(r.Count != 0 && r.Peek() > temp)
+                {
+                    s.Push(r.Pop());
+                }
+                r.Push(temp);
+            }
+            return r;
+        }
+
+        public static bool isBalancedBracket(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            foreach (char c in s)
+            {
+                if(c == '(' || c == '{' || c == '['){
+                    stack.Push(c);
+                }
+                else{
+                
+                }
+            }
+            return false;
         }
     }
 }

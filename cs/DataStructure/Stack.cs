@@ -57,4 +57,41 @@
             Console.WriteLine();
         }
     }
+
+    public class MaxStack
+    {
+        Stack<int> stack;
+        Stack<int> maxValues;
+        public MaxStack()
+        {
+            stack = new Stack<int>();
+            maxValues = new Stack<int>();
+        }
+        public void Push(int number)
+        {
+            if (Max() < number) 
+            {
+                maxValues.Push(number);
+            }
+            stack.Push(number);
+        }
+        public int Delete()
+        {
+            if (stack.Peek() == Max())
+            {
+                maxValues.Pop();
+            }
+            return stack.Pop();
+        }
+        public int Max()
+        {
+            if (maxValues.IsEmpty())
+            {
+                return int.MinValue;
+            }
+            else{
+                return maxValues.Peek();
+            }
+        }
+    }
 }
