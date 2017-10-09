@@ -159,6 +159,34 @@
         {
 
         }
+
+        public void PrintPaths(NTreeNode root)
+        {
+            int[] paths = new int[1000];
+            PrintPathRecurs(root,paths,0);
+        }
+        private void PrintPathRecurs(NTreeNode root, int[] paths, int length)
+        {
+            if (root == null) return;
+
+            paths[length] = root.Value;
+            length++;
+
+            if (root.Left == null && root.Right == null) PrintPath(paths,length);
+            else
+            {
+                PrintPathRecurs(root.Left, paths, length);
+                PrintPathRecurs(root.Right, paths, length);
+            }
+        }
+        private void PrintPath(int[] paths,int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                Console.Write($"{paths[i]}, ");
+            }
+            Console.Write("\n");
+        }
         /* 
             Compute the number of nodes in a tree. 
         */

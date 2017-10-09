@@ -93,6 +93,8 @@
             Console.WriteLine("\nMinValue : " + tree.MinValue(r));
             Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
             Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r,28));
+            Console.WriteLine("\nPaths : \n");
+            tree.PrintPaths(r);
             //DS.NTree tree1 = new DS.NTree();
             //foreach (var data in treeData)
             //{
