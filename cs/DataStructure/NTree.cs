@@ -123,6 +123,28 @@
             PreOrder(root.Left);
             PreOrder(root.Right);
         }
+        /* Pop all items one by one. Do following for every popped item
+         a) print it
+         b) push its right child
+         c) push its left child
+         Note that right child is pushed first so that left is processed first */
+        public void PreOrderIterative(NTreeNode root)
+        {
+            if (root == null) return;
+
+            Stack<NTreeNode> stack = new Stack<NTreeNode>();
+            stack.Push(root);
+
+            while(!stack.IsEmpty())
+            {
+                NTreeNode current = stack.Peek();
+                Console.Write($"{current.Value}, ");
+                stack.Pop();
+                if (current.Right != null) stack.Push(current.Right);
+                if (current.Left != null) stack.Push(current.Left);
+            }
+
+        }
         public void POSTOrder(NTreeNode root)
         {
             if (root == null)
@@ -132,6 +154,10 @@
             POSTOrder(root.Left);
             POSTOrder(root.Right);
             Console.Write($"{root.Value}, ");
+        }
+        public void POSTOrderIterative(NTreeNode root)
+        {
+
         }
         /* 
             Compute the number of nodes in a tree. 
@@ -196,9 +222,12 @@
          and check to see if the sum is 0 when you run out of tree. 
         */
 
-        public bool HasPathSum(NTreeNode root)
+        public bool HasPathSum(NTreeNode root,int sum)
         {
-            return false;
+            if (root == null) return sum == 0;
+
+            int subSum = sum - root.Value;
+            return HasPathSum(root.Left, subSum) || HasPathSum(root.Right, subSum);
         }
     }
 }

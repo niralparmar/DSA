@@ -84,12 +84,15 @@
             tree.InOrderIterative(r);
             Console.WriteLine("\nPreOrder");
             tree.PreOrder(r);
+            Console.WriteLine("\nPreOrder(Iterative)");
+            tree.PreOrderIterative(r);
             Console.WriteLine("\nPostOrder");
             tree.POSTOrder(r);
             Console.WriteLine("\nSize : " + tree.Size(r));
             Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
             Console.WriteLine("\nMinValue : " + tree.MinValue(r));
             Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
+            Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r,28));
             //DS.NTree tree1 = new DS.NTree();
             //foreach (var data in treeData)
             //{
