@@ -159,7 +159,6 @@
         {
 
         }
-
         public void PrintPaths(NTreeNode root)
         {
             int[] paths = new int[1000];
@@ -209,7 +208,6 @@
 
             return Math.Max(leftDepth, rightDepth) + 1;
         }
-
         /* 
          Given a non-empty binary search tree, 
          return the minimum data value found in that tree. 
@@ -249,13 +247,72 @@
          Strategy: subtract the node value from the sum when recurring down, 
          and check to see if the sum is 0 when you run out of tree. 
         */
-
         public bool HasPathSum(NTreeNode root,int sum)
         {
             if (root == null) return sum == 0;
 
             int subSum = sum - root.Value;
             return HasPathSum(root.Left, subSum) || HasPathSum(root.Right, subSum);
+        }
+        public NTreeNode Find(NTreeNode node, int value)
+        {
+            if (node == null) return null;
+            if (value == node.Value) return node;
+            else if (value < node.Value) return Find(node.Left, value);
+            else return Find(node.Right, value);
+        }
+        public NTreeNode FindParent(NTreeNode node, int value)
+        {
+            if (value == node.Value) return null;
+            else if (value < node.Value)
+            {
+                if (node.Left == null) return null;
+                if (node.Left.Value == value) return node;
+                else return FindParent(node.Left, value);
+            }
+            else 
+            {
+                if (node.Right == null) return null;
+                if (node.Right.Value == value) return node;
+                else return FindParent(node.Right, value);
+            }
+        }
+        /*
+        1. the value to remove is a leaf node; or 
+        2. the value to remove has a right subtree, but no left subtree; or 
+        3. the value to remove has a left subtree, but no right subtree; or 
+        4. the value to remove has both a left and right subtree in which case we promote the largest value in the left subtree.
+        */
+        public void Remove(NTreeNode root, int value)
+        {
+            NTreeNode node = Find(root,value);
+            if (node == null) return;
+            int size = Size(root);
+            NTreeNode parent = FindParent(root, value);
+            if (size == 1) root = null;
+            else if (node.Left == null && node.Right == null)
+            {
+                if (node.Value < parent.Value) parent.Left = null;
+                else parent.Right = null;
+            }
+            else if(node.Left == null && node.Right != null)
+            {
+                if (node.Value < parent.Value) parent.Left = node.Right;
+                else parent.Right = node.Right;
+            }
+            else if(node.Left != null && node.Right == null)
+            {
+                if (node.Value < parent.Value) parent.Right = node.Left;
+                else parent.Right = node.Left;
+            }
+            else
+            {
+                NTreeNode largeteValue = node.Left;
+                while (largeteValue.Right != null) largeteValue = largeteValue.Right;
+                NTreeNode largestNode = FindParent(root,largeteValue.Value);
+                largestNode.Right = null;
+                node.Value = largeteValue.Value;
+            }
         }
     }
 }

@@ -92,9 +92,20 @@
             Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
             Console.WriteLine("\nMinValue : " + tree.MinValue(r));
             Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
-            Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r,28));
+            Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r, 28));
             Console.WriteLine("\nPaths : \n");
             tree.PrintPaths(r);
+            if (tree.Find(r, 8) != null) Console.WriteLine("\nFound node");
+            else Console.WriteLine("\nNot Found node");
+
+            if (tree.FindParent(r, 18) != null) Console.WriteLine("\nFound Parent node");
+            else Console.WriteLine("\nNot Found parent");
+            Console.WriteLine("\nBefore delete");
+            tree.InOrder(r);
+            tree.Remove(r, 12);
+            Console.WriteLine("\nAfter delete");
+            tree.InOrder(r);
+
             //DS.NTree tree1 = new DS.NTree();
             //foreach (var data in treeData)
             //{
