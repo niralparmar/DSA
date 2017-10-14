@@ -2,13 +2,13 @@
 {
     using System;
 
-    public class NTreeNode
+    public class TreeNode
     {
         public int Value { get; set; }
-        public NTreeNode Left { get; set; }
-        public NTreeNode Right { get; set; }
+        public TreeNode Left { get; set; }
+        public TreeNode Right { get; set; }
 
-        public NTreeNode(int value)
+        public TreeNode(int value)
         {
             this.Value = value;
             this.Left = null;
@@ -20,13 +20,12 @@
         public NTree()
         {
         }
-        public NTreeNode Root { get; set; }
-
-        public NTreeNode Insert(NTreeNode node, int value)
+        public TreeNode Root { get; set; }
+        public TreeNode Insert(TreeNode node, int value)
         {
             if (node == null)
             {
-                node = new NTreeNode(value);
+                node = new TreeNode(value);
                 return node;
             }
             else
@@ -42,12 +41,12 @@
                 return node;
             }
         }
-        public NTreeNode Insert_Iterative(NTreeNode root, int value)
+        public TreeNode Insert_Iterative(TreeNode root, int value)
         {
-            NTreeNode node = root;
+            TreeNode node = root;
             if (node == null)
             {
-                root = new NTreeNode(value);
+                root = new TreeNode(value);
                 return root;
             }
             while (node != null)
@@ -56,7 +55,7 @@
                 {
                     if (node.Left == null)
                     {
-                        node.Left = new NTreeNode(value);
+                        node.Left = new TreeNode(value);
                         return root;
                     }
                     node = node.Left;
@@ -65,7 +64,7 @@
                 {
                     if (node.Right == null)
                     {
-                        node.Right = new NTreeNode(value);
+                        node.Right = new TreeNode(value);
                         return root;
                     }
                     node = node.Right;
@@ -73,8 +72,7 @@
             }
             return root;
         }
-
-        public void InOrder(NTreeNode root)
+        public void InOrder(TreeNode root)
         {
             if (root == null)
             {
@@ -85,10 +83,10 @@
             Console.Write($"{root.Value}, ");
             InOrder(root.Right);
         }
-        public void InOrderIterative(NTreeNode root)
+        public void InOrderIterative(TreeNode root)
         {
-            Stack<NTreeNode> stack = new Stack<NTreeNode>();
-            NTreeNode current = root;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            TreeNode current = root;
             bool done = false;
             while (!done)
             {
@@ -113,7 +111,7 @@
                 }
             }
         }
-        public void PreOrder(NTreeNode root)
+        public void PreOrder(TreeNode root)
         {
             if (root == null)
             {
@@ -128,16 +126,16 @@
          b) push its right child
          c) push its left child
          Note that right child is pushed first so that left is processed first */
-        public void PreOrderIterative(NTreeNode root)
+        public void PreOrderIterative(TreeNode root)
         {
             if (root == null) return;
 
-            Stack<NTreeNode> stack = new Stack<NTreeNode>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
             stack.Push(root);
 
-            while(!stack.IsEmpty())
+            while (!stack.IsEmpty())
             {
-                NTreeNode current = stack.Peek();
+                TreeNode current = stack.Peek();
                 Console.Write($"{current.Value}, ");
                 stack.Pop();
                 if (current.Right != null) stack.Push(current.Right);
@@ -145,7 +143,7 @@
             }
 
         }
-        public void POSTOrder(NTreeNode root)
+        public void POSTOrder(TreeNode root)
         {
             if (root == null)
             {
@@ -155,30 +153,66 @@
             POSTOrder(root.Right);
             Console.Write($"{root.Value}, ");
         }
-        public void POSTOrderIterative(NTreeNode root)
+        /*
+         * 1.1 Create an empty stack
+            2.1 Do following while root is not NULL
+                a) Push root's right child and then root to stack.
+                b) Set root as root's left child.
+            2.2 Pop an item from stack and set it as root.
+                a) If the popped item has a right child and the right child 
+                   is at top of stack, then remove the right child from stack,
+                   push the root back and set root as root's right child.
+                b) Else print root's data and set root as NULL.
+            2.3 Repeat steps 2.1 and 2.2 while stack is not empty.
+         */
+        public void POSTOrderIterative(TreeNode root)
         {
+            if (root == null) return;
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            do
+            {
+                while (root != null)
+                {
+                    if (root.Right != null) stack.Push(root.Right); //Push the right tree
+                    stack.Push(root);
+                    root = root.Left; // Move to Left Tree
+                }
+                root = stack.Pop();
+                if (root.Right != null && !stack.IsEmpty() && stack.Peek() == root.Right)
+                {
+                    //Swap Root and Right in Stack, so that we can process root later.
+                    stack.Pop(); //remove Right
+                    stack.Push(root); // push Root
+                    root = root.Right; // Move to Right Tree
+                }
+                else
+                {
+                    Console.Write($"{ root.Value }, ");
+                    root = null; // Done with This tree , move to next in stack
+                }
+            } while (!stack.IsEmpty());
 
         }
-        public void PrintPaths(NTreeNode root)
+        public void PrintPaths(TreeNode root)
         {
             int[] paths = new int[1000];
-            PrintPathRecurs(root,paths,0);
+            PrintPathRecurs(root, paths, 0);
         }
-        private void PrintPathRecurs(NTreeNode root, int[] paths, int length)
+        private void PrintPathRecurs(TreeNode root, int[] paths, int length)
         {
             if (root == null) return;
 
             paths[length] = root.Value;
             length++;
 
-            if (root.Left == null && root.Right == null) PrintPath(paths,length);
+            if (root.Left == null && root.Right == null) PrintPath(paths, length);
             else
             {
                 PrintPathRecurs(root.Left, paths, length);
                 PrintPathRecurs(root.Right, paths, length);
             }
         }
-        private void PrintPath(int[] paths,int length)
+        private void PrintPath(int[] paths, int length)
         {
             for (int i = 0; i < length; i++)
             {
@@ -189,7 +223,7 @@
         /* 
             Compute the number of nodes in a tree. 
         */
-        public int Size(NTreeNode node)
+        public int Size(TreeNode node)
         {
             if (node == null) return 0;
 
@@ -199,7 +233,7 @@
          Compute the "maxDepth" of a tree -- the number of nodes along 
          the longest path from the root node down to the farthest leaf node. 
         */
-        public int MaxDepth(NTreeNode node)
+        public int MaxDepth(TreeNode node)
         {
             if (node == null) return 0;
 
@@ -213,9 +247,9 @@
          return the minimum data value found in that tree. 
          Note that the entire tree does not need to be searched. 
         */
-        public int MinValue(NTreeNode root)
+        public int MinValue(TreeNode root)
         {
-            NTreeNode node = root;
+            TreeNode node = root;
 
             while (node.Left != null)
             {
@@ -229,9 +263,9 @@
          return the maximum data value found in that tree. 
          Note that the entire tree does not need to be searched. 
         */
-        public int MaxValue(NTreeNode root)
+        public int MaxValue(TreeNode root)
         {
-            NTreeNode node = root;
+            TreeNode node = root;
 
             while (node.Right != null)
             {
@@ -247,21 +281,21 @@
          Strategy: subtract the node value from the sum when recurring down, 
          and check to see if the sum is 0 when you run out of tree. 
         */
-        public bool HasPathSum(NTreeNode root,int sum)
+        public bool HasPathSum(TreeNode root, int sum)
         {
             if (root == null) return sum == 0;
 
             int subSum = sum - root.Value;
             return HasPathSum(root.Left, subSum) || HasPathSum(root.Right, subSum);
         }
-        public NTreeNode Find(NTreeNode node, int value)
+        public TreeNode Find(TreeNode node, int value)
         {
             if (node == null) return null;
             if (value == node.Value) return node;
             else if (value < node.Value) return Find(node.Left, value);
             else return Find(node.Right, value);
         }
-        public NTreeNode FindParent(NTreeNode node, int value)
+        public TreeNode FindParent(TreeNode node, int value)
         {
             if (value == node.Value) return null;
             else if (value < node.Value)
@@ -270,7 +304,7 @@
                 if (node.Left.Value == value) return node;
                 else return FindParent(node.Left, value);
             }
-            else 
+            else
             {
                 if (node.Right == null) return null;
                 if (node.Right.Value == value) return node;
@@ -283,36 +317,50 @@
         3. the value to remove has a left subtree, but no right subtree; or 
         4. the value to remove has both a left and right subtree in which case we promote the largest value in the left subtree.
         */
-        public void Remove(NTreeNode root, int value)
+        public void Remove(TreeNode root, int value)
         {
-            NTreeNode node = Find(root,value);
+            TreeNode node = Find(root, value);
             if (node == null) return;
             int size = Size(root);
-            NTreeNode parent = FindParent(root, value);
+            TreeNode parent = FindParent(root, value);
             if (size == 1) root = null;
             else if (node.Left == null && node.Right == null)
             {
                 if (node.Value < parent.Value) parent.Left = null;
                 else parent.Right = null;
             }
-            else if(node.Left == null && node.Right != null)
+            else if (node.Left == null && node.Right != null)
             {
                 if (node.Value < parent.Value) parent.Left = node.Right;
                 else parent.Right = node.Right;
             }
-            else if(node.Left != null && node.Right == null)
+            else if (node.Left != null && node.Right == null)
             {
                 if (node.Value < parent.Value) parent.Right = node.Left;
                 else parent.Right = node.Left;
             }
             else
             {
-                NTreeNode largeteValue = node.Left;
+                TreeNode largeteValue = node.Left;
                 while (largeteValue.Right != null) largeteValue = largeteValue.Right;
-                NTreeNode largestNode = FindParent(root,largeteValue.Value);
+                TreeNode largestNode = FindParent(root, largeteValue.Value);
                 largestNode.Right = null;
                 node.Value = largeteValue.Value;
             }
+        }
+        public void BreadthFirst(TreeNode root)
+        {
+            if (root == null) return;
+            MyQueue<TreeNode> queue = new MyQueue<TreeNode>();
+            queue.Enqueue(root);
+            while (queue.Size() > 0)
+            {
+                root = queue.Dequeue();
+                Console.Write($"{ root.Value}, ");
+                if (root.Left != null) queue.Enqueue(root.Left);
+                if (root.Right != null) queue.Enqueue(root.Right);
+            }
+
         }
     }
 }

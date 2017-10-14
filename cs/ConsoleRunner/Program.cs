@@ -8,9 +8,9 @@
 
     class Program
     {
-        private static string result;
         static void Main(string[] args)
         {
+            #region PreviousExecution
             //Console.WriteLine(Stack.SimplifyPath("/a/./b/../../c/"));
             //Console.WriteLine(Stack.SimplifyPath("/a/././../b/../../c/"));
             //Console.WriteLine(Stack.IsDupBraces("((a+(a + b)))"));
@@ -70,14 +70,22 @@
             //}
             //string s = Console.ReadLine();
             //Algo.Stack.isBalancedBracket(s);
-            //Algo.Arrays.coverPoints(new List<int>() { 0,1,1},new List<int>() {0,1,2 });
-            List<int> treeData = new List<int>() { 12,8,14,5,9,13,16,3,6,10 };
+            //Algo.Arrays.coverPoints(new List<int>() { 0,1,1},new List<int>() {0,1,2 }); 
+            #endregion
+
+            List<int> treeData = new List<int>() { 12, 8, 14, 5, 9, 13, 16, 3, 6, 10 };
             DS.NTree tree = new DS.NTree();
             foreach (var data in treeData)
             {
                 tree.Root = tree.Insert(tree.Root, data);
             }
-            DS.NTreeNode r = tree.Root;
+            //DS.NTree tree = new DS.NTree();
+            //foreach (var data in treeData)
+            //{
+            //    tree.Root = tree.Insert_Iterative(tree.Root, data);
+            //}
+            //tree1.InOrder(tree1.Root);
+            DS.TreeNode r = tree.Root;
             Console.WriteLine("InOrder");
             tree.InOrder(r);
             Console.WriteLine("\nInOrder(Iterative)");
@@ -88,6 +96,10 @@
             tree.PreOrderIterative(r);
             Console.WriteLine("\nPostOrder");
             tree.POSTOrder(r);
+            Console.WriteLine("\nPostOrder(Iterative)");
+            tree.POSTOrderIterative(r);
+            Console.WriteLine("\nBreadthFirst");
+            tree.BreadthFirst(r);
             Console.WriteLine("\nSize : " + tree.Size(r));
             Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
             Console.WriteLine("\nMinValue : " + tree.MinValue(r));
@@ -106,20 +118,7 @@
             Console.WriteLine("\nAfter delete");
             tree.InOrder(r);
 
-            //DS.NTree tree1 = new DS.NTree();
-            //foreach (var data in treeData)
-            //{
-            //    tree1.Root = tree1.Insert_Iterative(tree1.Root, data);
-            //}
-            //tree1.InOrder(tree1.Root);
             Console.ReadLine();
-        }
-
-        static async Task<string> say()
-        {
-            await Task.Delay(5);
-            result = "hellow";
-            return "bye";
         }
     }
 }
