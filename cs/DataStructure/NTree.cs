@@ -362,5 +362,31 @@
             }
 
         }
+        public TreeNode GetSuccessort(TreeNode root,int value)
+        {
+            TreeNode current = Find(root, value);
+            if (current == null) return null;
+            if (current.Right != null)
+            {
+                TreeNode tmp = current.Right;
+                while (tmp.Left != null) tmp = tmp.Left;
+                return tmp;
+            }
+            else
+            {
+                TreeNode ancesotr = root;
+                TreeNode successor = null;
+                while (ancesotr != current)
+                {
+                    if (current.Value < ancesotr.Value)
+                    {
+                        successor = ancesotr;
+                        ancesotr = ancesotr.Left;
+                    }
+                    else ancesotr = ancesotr.Right;
+                }
+                return successor;
+            }
+        }
     }
 }
