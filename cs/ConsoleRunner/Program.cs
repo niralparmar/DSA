@@ -73,74 +73,100 @@
             //Algo.Arrays.coverPoints(new List<int>() { 0,1,1},new List<int>() {0,1,2 }); 
             #endregion
 
-            //List<int> treeData = new List<int>() { 12, 8, 14, 5, 9, 13, 16, 3, 6, 10 };
-            List<int> treeData = new List<int>() { 15,10,20,8,12,17,25,6,11,16,27 };
-            DS.NTree tree = new DS.NTree();
-            foreach (var data in treeData)
-            {
-                tree.Root = tree.Insert(tree.Root, data);
-            }
+            #region Tree Test
+            ////List<int> treeData = new List<int>() { 12, 8, 14, 5, 9, 13, 16, 3, 6, 10 };
+            //List<int> treeData = new List<int>() { 15,10,20,8,12,17,25,6,11,16,27 };
             //DS.NTree tree = new DS.NTree();
             //foreach (var data in treeData)
             //{
-            //    tree.Root = tree.Insert_Iterative(tree.Root, data);
+            //    tree.Root = tree.Insert(tree.Root, data);
             //}
-            //tree1.InOrder(tree1.Root);
-            DS.TreeNode r = tree.Root;
-            Console.WriteLine("InOrder");
-            tree.InOrder(r);
+            ////DS.NTree tree = new DS.NTree();
+            ////foreach (var data in treeData)
+            ////{
+            ////    tree.Root = tree.Insert_Iterative(tree.Root, data);
+            ////}
+            ////tree1.InOrder(tree1.Root);
+            //DS.TreeNode r = tree.Root;
+            //Console.WriteLine("InOrder");
+            //tree.InOrder(r);
 
-            Console.WriteLine("\nInOrder(Iterative)");
-            tree.InOrderIterative(r);
+            //Console.WriteLine("\nInOrder(Iterative)");
+            //tree.InOrderIterative(r);
 
-            Console.WriteLine("\nPreOrder");
-            tree.PreOrder(r);
+            //Console.WriteLine("\nPreOrder");
+            //tree.PreOrder(r);
 
-            Console.WriteLine("\nPreOrder(Iterative)");
-            tree.PreOrderIterative(r);
+            //Console.WriteLine("\nPreOrder(Iterative)");
+            //tree.PreOrderIterative(r);
 
-            Console.WriteLine("\nPostOrder");
-            tree.POSTOrder(r);
+            //Console.WriteLine("\nPostOrder");
+            //tree.POSTOrder(r);
 
-            Console.WriteLine("\nPostOrder(Iterative)");
-            tree.POSTOrderIterative(r);
+            //Console.WriteLine("\nPostOrder(Iterative)");
+            //tree.POSTOrderIterative(r);
 
-            Console.WriteLine("\nBreadthFirst");
-            tree.BreadthFirst(r);
+            //Console.WriteLine("\nBreadthFirst");
+            //tree.BreadthFirst(r);
 
-            Console.WriteLine("\nSize : " + tree.Size(r));
+            //Console.WriteLine("\nSize : " + tree.Size(r));
 
-            Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
+            //Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
 
-            Console.WriteLine("\nMinValue : " + tree.MinValue(r));
+            //Console.WriteLine("\nMinValue : " + tree.MinValue(r));
 
-            Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
+            //Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
 
-            Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r, 28));
+            //Console.WriteLine("\nHasPathSum : " + tree.HasPathSum(r, 28));
 
-            Console.WriteLine("\nPaths : \n");
-            tree.PrintPaths(r);
+            //Console.WriteLine("\nPaths : \n");
+            //tree.PrintPaths(r);
 
-            if (tree.Find(r, 8) != null) Console.WriteLine("\nFound node");
-            else Console.WriteLine("\nNot Found node");
+            //if (tree.Find(r, 8) != null) Console.WriteLine("\nFound node");
+            //else Console.WriteLine("\nNot Found node");
 
-            if (tree.FindParent(r, 18) != null) Console.WriteLine("\nFound Parent node");
-            else Console.WriteLine("\nNot Found parent");
+            //if (tree.FindParent(r, 18) != null) Console.WriteLine("\nFound Parent node");
+            //else Console.WriteLine("\nNot Found parent");
 
-            var n = tree.GetSuccessort(r, 8);
-            if (n != null) Console.Write($"\nInOrder Successor:{n.Value}");
-            else Console.Write("\nInOrder Successor Not Found");
+            //var n = tree.GetSuccessort(r, 8);
+            //if (n != null) Console.Write($"\nInOrder Successor:{n.Value}");
+            //else Console.Write("\nInOrder Successor Not Found");
 
-            //Test delete all test , or it will messed up other test data
-            Console.WriteLine("\nBefore delete");
-            tree.InOrder(r);
-            tree.Remove(r, 12);
-            Console.WriteLine("\nAfter delete");
-            tree.InOrder(r);
-            
+            ////Test delete all test , or it will messed up other test data
+            //Console.WriteLine("\nBefore delete");
+            //tree.InOrder(r);
+            //tree.Remove(r, 12);
+            //Console.WriteLine("\nAfter delete");
+            //tree.InOrder(r); 
+            #endregion
 
+            #region Sorting Test
+            int[] array = new int[] { 5, 3, 1, 10, 9,2,8,20,-1 };
+
+            int[] a1 = (int[])array.Clone();
+            int[] a2 = (int[])array.Clone();
+            int[] a3 = (int[])array.Clone();
+            Console.Write("Before Sort:");
+            PrintArray(array);
+            Algo.Sorting.Bubble(a1);
+            Console.Write("\nAfter Bubble Sort: ");
+            PrintArray(a1);
+            Algo.Sorting.MergeSort(a2, 0, a2.Length);
+            Console.Write("\nAfter Merge Sort: ");
+            PrintArray(a2);
+            Console.Write("\nAfter Quick Sort: ");
+            Algo.Sorting.Quick_sort(a3, 0, a3.Length-1);
+            PrintArray(a3);
+            #endregion
 
             Console.ReadLine();
+        }
+        static void PrintArray(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write($"{array[i]},");
+            }
         }
     }
 }
