@@ -1,6 +1,7 @@
 ﻿namespace DataStructure
 {
     using System;
+    using System.Collections.Generic;
 
     public class TreeNode
     {
@@ -283,10 +284,15 @@
         */
         public bool HasPathSum(TreeNode root, int sum)
         {
-            if (root == null) return sum == 0;
-
-            int subSum = sum - root.Value;
-            return HasPathSum(root.Left, subSum) || HasPathSum(root.Right, subSum);
+            bool ans = false;
+            int subsum = sum - root.Value;
+            if (subsum == 0 && root.Left == null && root.Right == null)
+                return true;
+            if (root.Left != null)
+                ans = ans || HasPathSum(root.Left, subsum);
+            if (root.Right != null)
+                ans = ans || HasPathSum(root.Right, subsum);
+            return ans;
         }
         public TreeNode Find(TreeNode node, int value)
         {
@@ -362,7 +368,7 @@
             }
 
         }
-        public TreeNode GetSuccessort(TreeNode root,int value)
+        public TreeNode GetSuccessor(TreeNode root,int value)
         {
             TreeNode current = Find(root, value);
             if (current == null) return null;
@@ -387,6 +393,113 @@
                 }
                 return successor;
             }
+        }
+        public int SumNumbers(TreeNode root)
+        {
+            var sum = SumNumbers(root, 0);
+            return sum;
+        }
+        public int SumNumbers(TreeNode root, int val)
+        {
+            // Base case
+            if (root == null)
+                return 0;
+
+            // Update val
+            val = ((val) % 1003 * 10) % 1003 + (root.Value % 1003) % 1003;
+
+            // if current node is leaf, return the current value of val
+            if (root.Left == null && root.Right == null)
+                return val;
+
+            // recur sum of values for left and right subtree
+            return (SumNumbers(root.Left, val) % 1003 + SumNumbers(root.Right, val) % 1003) % 1003;
+        }
+        public void ReversBreadthFirst(TreeNode root)
+        {
+            MyQueue<TreeNode> queue = new MyQueue<TreeNode>();
+            Stack<TreeNode> stack = new Stack<TreeNode>();
+            queue.Enqueue(root);
+
+            while(queue.Size() > 0)
+            {
+                TreeNode node = queue.Dequeue();
+                stack.Push(node);
+                if (node.Right != null) queue.Enqueue(node.Right);
+                if (node.Left != null) queue.Enqueue(node.Left);
+            }
+            while (!stack.IsEmpty())
+            {
+                Console.Write($"{ stack.Pop().Value}, ");
+            }
+
+        }
+        public void ReversBreadthFirstIterative(TreeNode root)
+        {
+            int height = MaxDepth(root);
+            for (int i = height; i >=1 ; i--)
+            {
+                PrintNodeAtLevel(root, i);
+            }
+        }
+        public void PrintNodeAtLevel(TreeNode node,int level)
+        {
+            if (node == null) return;
+            if (level == 1) Console.Write($"{node.Value}, ");
+            else if(level>1)
+            {
+                PrintNodeAtLevel(node.Left, level - 1);
+                PrintNodeAtLevel(node.Right, level - 1);
+            }
+        }
+        public TreeNode CreateTreeFromLevelOrder(List<int> data)
+        {
+            MyQueue<TreeNode> queue = new MyQueue<TreeNode>();
+            TreeNode root = new TreeNode(data[0]);
+            TreeNode current = null;
+            int childCount = 0;
+            queue.Enqueue(root);
+            for (int i = 1; i < data.Count; i++)
+            {
+                TreeNode node = data[i] != -1 ? new TreeNode(data[i]) : null;
+                if (childCount == 0)
+                {
+                    current = queue.Dequeue();
+                }
+                if(childCount == 0)
+                {
+                    current.Left = node;
+                    childCount++;
+                }
+                else
+                {
+                    current.Right = node;
+                    childCount = 0;
+                }
+                if(node != null)
+                {
+                    queue.Enqueue(node);
+                }
+            }
+            return root;
+        }
+        public TreeNode GetLeastCommonAncestor(TreeNode root,int n1,int n2)
+        {
+            Stack<TreeNode> s = new Stack<TreeNode>();
+            TreeNode ancestor = null;
+            s.Push(root);
+            while(s.Size() > 0)
+            {
+                TreeNode tmp = s.Peek();
+               
+                if((tmp.Left != null && tmp.Value == n1) || (tmp.Right != null && tmp.Value == n1))
+                {
+
+                }
+                if (tmp.Left != null) s.Push(tmp.Left);
+                if (tmp.Right != null) s.Push(tmp.Right);
+            }
+            return ancestor;
         }
     }
 }
