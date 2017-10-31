@@ -81,13 +81,13 @@ namespace ConsoleRunner
             List<int> treeData = new List<int>() { 12,8,5,9,10,14,13,16,3,6 };
             //List<int> treeData = new List<int>() { 5, 1, 2, 8, 2, 7, 5, 2, 1, 6, 4, 9, 3 };
             //List<int> treeData = new List<int>() { 1000,200 };
-            List<int> levelOrderTreeData = new List<int>() { 1, 2, 3, -1, -1, 4, -1, 1, 5 };
+            //List<int> levelOrderTreeData = new List<int>() { 1, 2, 3, -1, -1, 4, -1, 1, 5 };
             DS.NTree tree = new DS.NTree();
-            tree.Root = tree.CreateTreeFromLevelOrder(levelOrderTreeData);
-            //foreach (var data in treeData)
-            //{
-            //    tree.Root = tree.Insert(tree.Root, data);
-            //}
+            //tree.Root = tree.CreateTreeFromLevelOrder(levelOrderTreeData);
+            foreach (var data in treeData)
+            {
+                tree.Root = tree.Insert(tree.Root, data);
+            }
             //DS.NTree tree = new DS.NTree();
             //foreach (var data in treeData)
             //{
@@ -126,6 +126,8 @@ namespace ConsoleRunner
 
             Console.WriteLine("\nMaxDepth : " + tree.MaxDepth(r));
 
+            Console.WriteLine("\nLevel : " + tree.FindLevel(r, 3));
+
             Console.WriteLine("\nMinValue : " + tree.MinValue(r));
 
             Console.WriteLine("\nMaxValue : " + tree.MaxValue(r));
@@ -145,6 +147,8 @@ namespace ConsoleRunner
             var n = tree.GetSuccessor(r, 22);
             if (n != null) Console.Write($"\nInOrder Successor:{n.Value}");
             else Console.Write("\nInOrder Successor Not Found");
+
+            Console.WriteLine("\nDistance : " + tree.Distance(r,6,10));
 
             Console.WriteLine("\nSumNumbers : " + tree.SumNumbers(r));
 

@@ -485,21 +485,36 @@
         }
         public TreeNode GetLeastCommonAncestor(TreeNode root,int n1,int n2)
         {
-            Stack<TreeNode> s = new Stack<TreeNode>();
-            TreeNode ancestor = null;
-            s.Push(root);
-            while(s.Size() > 0)
-            {
-                TreeNode tmp = s.Peek();
-               
-                if((tmp.Left != null && tmp.Value == n1) || (tmp.Right != null && tmp.Value == n1))
-                {
+            if (root == null) return null;
 
-                }
-                if (tmp.Left != null) s.Push(tmp.Left);
-                if (tmp.Right != null) s.Push(tmp.Right);
-            }
-            return ancestor;
+            if (root.Value == n1 || root.Value == n2) return root;
+
+            TreeNode left_lca = GetLeastCommonAncestor(root.Left, n1, n2);
+            TreeNode right_lca = GetLeastCommonAncestor(root.Right, n1, n2);
+            if (left_lca != null && right_lca != null) return root;
+
+            return left_lca == null ? right_lca : left_lca;
+        }
+        public int FindLevel(TreeNode root,int value)
+        {
+            return FindLevel(root, value, 0);
+        }
+        private int FindLevel(TreeNode root, int value,int level)
+        {
+            if (root == null) return -1;
+            if (root.Value == value) return level;
+
+            int l = FindLevel(root.Left, value, level + 1);
+            return (l != -1) ? l : FindLevel(root.Right, value, level + 1);
+        }
+        public int Distance(TreeNode root, int n1,int n2)
+        {
+            TreeNode lca = GetLeastCommonAncestor(root, n1, n2);
+            int lca_level = FindLevel(root, lca.Value);
+            int d1 = FindLevel(root, n1);
+            int d2 = FindLevel(root, n2);
+
+            return d1 + d2 - 2 * lca_level;
         }
     }
 }
