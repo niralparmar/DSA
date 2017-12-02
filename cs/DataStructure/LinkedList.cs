@@ -23,6 +23,7 @@
         public LinkedListNode Head
         {
             get { return mHead; }
+            set { mHead = value; }
         }
 
         /// <summary>
@@ -333,7 +334,22 @@
             }
             return false;
         }
-
+        /// <summary>
+        /// Returns string represtation of LinkedList
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string returnString = string.Empty;
+            LinkedListNode current = mHead;
+            while (current != null)
+            {
+                returnString += current.Value + "-";
+                current = current.Next;
+            }
+            returnString += "null";
+            return returnString;
+        }
 
     }
 }

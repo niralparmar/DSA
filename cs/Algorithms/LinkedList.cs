@@ -144,8 +144,160 @@
                 a = a.Next;
             }
         }
-        public static void SwapNodes(LinkedListNode a)
+        public static void RemoveDuplicateV1(LinkedListNode a)
         {
+            LinkedListNode current = a;
+
+            while (current.Next != null)
+            {
+                if (current.Value == current.Next.Value)
+                {
+                    current.Next = current.Next.Next;
+                }
+                else
+                {
+                    current = current.Next;
+                }
+            }
+        }
+        public static LinkedListNode SwapAdjecentNodes(LinkedListNode a)
+        {
+            LinkedListNode current = a;
+            while (current != null && current.Next != null)
+            {
+                int tmp = current.Next.Value;
+                current.Next.Value = current.Value;
+                current.Value = tmp;
+
+                current = current.Next.Next;
+            }
+            return a;
+        }
+        public static void FrontBackSplit(DataStructure.LinkedList source, DataStructure.LinkedList front, DataStructure.LinkedList back)
+        {
+            int length = GetLinkedListLength(source.Head);
+            DataStructure.LinkedListNode node = source.Head;
+
+            for (int i = 0; i < length; i++)
+            {
+                if (i < length / 2)
+                {
+                    front.Add(node.Value);
+                }
+                else
+                {
+                    back.Add(node.Value);
+                }
+
+                node = node.Next;
+            }
+        }
+        public static DataStructure.LinkedList ShuffleMerge(DataStructure.LinkedList a, DataStructure.LinkedList b)
+        {
+            DataStructure.LinkedList result = new DataStructure.LinkedList();
+            LinkedListNode aNode = a.Head;
+            LinkedListNode bNode = b.Head;
+            while (aNode != null && bNode != null)
+            {
+                if (aNode != null)
+                {
+                    result.Add(aNode.Value);
+                    aNode = aNode.Next;
+                }
+                if (bNode != null)
+                {
+                    result.Add(bNode.Value);
+                    bNode = bNode.Next;
+                }
+            }
+
+            while (aNode != null)
+            {
+                result.Add(aNode.Value);
+                aNode = aNode.Next;
+            }
+            while (bNode != null)
+            {
+                result.Add(bNode.Value);
+                bNode = bNode.Next;
+            }
+            return result;
+        }
+
+        public static DataStructure.LinkedList SortedMerge(DataStructure.LinkedList a, DataStructure.LinkedList b)
+        {
+            DataStructure.LinkedList result = new DataStructure.LinkedList();
+            LinkedListNode aNode = a.Head;
+            LinkedListNode bNode = b.Head;
+            while (aNode != null && bNode != null)
+            {
+                if (aNode != null & bNode != null)
+                {
+                    if (aNode.Value < bNode.Value)
+                    {
+                        result.Add(aNode.Value);
+                        aNode = aNode.Next;
+                    }
+                    else
+                    {
+                        result.Add(bNode.Value);
+                        bNode = bNode.Next;
+                    }
+                }
+            }
+
+            while (aNode != null)
+            {
+                result.Add(aNode.Value);
+                aNode = aNode.Next;
+            }
+            while (bNode != null)
+            {
+                result.Add(bNode.Value);
+                bNode = bNode.Next;
+            }
+            return result;
+        }
+
+        public static DataStructure.LinkedList SortedIntersect(DataStructure.LinkedList a, DataStructure.LinkedList b)
+        {
+            DataStructure.LinkedList result = new DataStructure.LinkedList();
+            LinkedListNode aNode = a.Head;
+            LinkedListNode bNode = b.Head;
+            while (aNode != null && bNode != null)
+            {
+                if (aNode.Value == bNode.Value)
+                {
+                    result.Add(aNode.Value);
+                    aNode = aNode.Next;
+                    bNode = bNode.Next;
+                }
+                else if (aNode.Value < bNode.Value) aNode = aNode.Next;
+                else bNode = bNode.Next;
+            }
+            return result;
+
+        }
+
+        public static LinkedListNode ReverseKNode(LinkedListNode a, int k)
+        {
+            LinkedListNode current = a;
+            LinkedListNode previous = null;
+            LinkedListNode next = null;
+            int count = 0;
+            while (current != null && count < k)
+            {
+                next = current.Next;
+                current.Next = previous;
+                previous = current;
+                current = next;
+                count++;
+            }
+            if (next != null)
+                a.Next = ReverseKNode(next, k);
+
+            // prev is now head of input list
+            return previous;
 
         }
     }

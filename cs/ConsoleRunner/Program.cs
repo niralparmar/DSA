@@ -1,5 +1,7 @@
-﻿#define TREE
+﻿//#define TREE
 //#define SORTING
+//#define BIT
+#define LINKEDLIST
 namespace ConsoleRunner
 {
     using System;
@@ -74,6 +76,39 @@ namespace ConsoleRunner
             //Algo.Stack.isBalancedBracket(s);
             //Algo.Arrays.coverPoints(new List<int>() { 0,1,1},new List<int>() {0,1,2 }); 
             #endregion
+
+#if (LINKEDLIST)
+            #region LinkedListTest
+            DS.LinkedList linkedList = GetLinkedList(new int[] { 1, 2, 3, 4, 5 });
+            DS.LinkedList a = new DS.LinkedList();
+            DS.LinkedList b = new DS.LinkedList();
+            Algo.LinkedList.FrontBackSplit(linkedList, a, b);
+            Console.WriteLine(linkedList.ToString());
+            Console.WriteLine(a.ToString());
+            Console.WriteLine(b.ToString());
+            DS.LinkedList removeDups = GetLinkedList(new int[] { 1, 2, 2,2,4,4,5,6,7,7,7});
+            Algo.LinkedList.RemoveDuplicateV1(removeDups.Head);
+            Console.WriteLine(removeDups.ToString());
+
+            DS.LinkedList shuffleMerged = Algo.LinkedList.ShuffleMerge(GetLinkedList(new int[] { 1, 3, 5, 7 }), GetLinkedList(new int[] { 2, 4, 6 }));
+            Console.WriteLine(shuffleMerged.ToString());
+            DS.LinkedList sortedMerge = Algo.LinkedList.SortedMerge(GetLinkedList(new int[] {  3, 5, 7 }), GetLinkedList(new int[] {1, 2, 4, 6 }));
+            Console.WriteLine(sortedMerge.ToString());
+            DS.LinkedList sortedIntersect = Algo.LinkedList.SortedIntersect(GetLinkedList(new int[] { 1,4,7,10}), GetLinkedList(new int[] { 2,4,6,8,10 }));
+            Console.WriteLine(sortedIntersect.ToString());
+            DS.LinkedList reversList = GetLinkedList(new int[] { 1, 4, 7, 10 });
+            reversList.Head = Algo.LinkedList.ReverseLinkedList(reversList.Head);
+            Console.WriteLine(reversList.ToString());
+
+            DS.LinkedList swapList = GetLinkedList(new int[] { 1, 4, 7, 10 });
+            Algo.LinkedList.SwapAdjecentNodes(swapList.Head);
+            Console.WriteLine(swapList.ToString());
+
+            DS.LinkedList reversKList = GetLinkedList(new int[] { 1, 4, 7, 10 ,5,17,9});
+            reversKList.Head =  Algo.LinkedList.ReverseKNode(reversKList.Head,3);
+            Console.WriteLine(reversKList.ToString());
+            #endregion
+#endif
 
 #if (TREE)
             #region Tree Test
@@ -180,7 +215,52 @@ namespace ConsoleRunner
             PrintArray(a3);
             #endregion
 #endif
+#if (BIT)
+            updateBitMask(9, 2, 2);
+            UpdateBit();
+#endif
+
             Console.ReadLine();
+        }
+        public static DS.LinkedList GetLinkedList(int[] data)
+        {
+            DS.LinkedList list = new DS.LinkedList();
+            for (int i = 0; i < data.Length; i++)
+            {
+                list.Add(data[i]);
+            }
+            return list;
+        }
+        static void updateBitMask(int num, int i, int v)
+        {
+            int mask = ~(1 << i);
+            int n = num & mask;
+            int n1 = v << i;
+            int t = n | n1;
+
+        }
+        static void UpdateBit()
+        {
+            int n = Convert.ToInt16("10000000", 2);
+            int m = Convert.ToInt16("10011", 2);
+            int i = 2;
+            int j = 4;
+
+            int allOnes = ~0;
+
+            int left = allOnes << (j + 1);
+
+            int right = ((1 << i) - 1);
+
+            int mask = left | right;
+
+            int n_cleared = n & mask;
+
+            int m_shifted = m << i;
+
+            Console.Write(n_cleared | m_shifted);
+
+
         }
         static void PrintArray(int[] array)
         {

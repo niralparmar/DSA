@@ -14,7 +14,7 @@
         /// <summary>
         /// Gets the value of <see cref="LinkedListNode"/>.
         /// </summary>
-        public int Value { get; private set; }
+        public int Value { get;  set; }
 
         /// <summary>
         /// Gets or sets the pointer to the next <see cref="LinkedListNode"/>.
