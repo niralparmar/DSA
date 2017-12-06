@@ -9,6 +9,7 @@ namespace ConsoleRunner
     using Algo = Algorithms;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Collections;
 
     class Program
     {
@@ -268,6 +269,49 @@ namespace ConsoleRunner
             {
                 Console.Write($"{array[i]},");
             }
+        }
+        public static string RotateString(string S)
+        {
+            string result = S.Substring(1, S.Length - 1) + S.Substring(0, 1);
+            return result;
+        }
+        public static int GetCountToZero(string s)
+        {
+            //string s = "01110011";
+            //string s = "10000000";
+            UInt64 number = GetIntFromBin(s);
+            Console.WriteLine(number);
+            int count = 0;
+            //bool done = false;
+            while (number > 0)
+            {
+                if (number % 2 == 0) number = number / 2;
+                else if (number == 3 || number % 4 == 1) number = number - 1;
+                else number = number + 1;
+
+                count++;
+            }
+            return count;
+        }
+        public static UInt64 GetIntFromBin(string s)
+        {
+
+            return Convert.ToUInt64(s, 2);
+        }
+
+        public static bool CheckInteresting(TimeSpan time)
+        {
+            Hashtable hashtable = new Hashtable();
+
+            string[] s = time.ToString().Split(':');
+            foreach (var item in s)
+            {
+
+                if (!hashtable.ContainsKey(item[0].ToString())) hashtable.Add(item[0].ToString(), item[0].ToString());
+                if (!hashtable.ContainsKey(item[1].ToString())) hashtable.Add(item[1].ToString(), item[1].ToString());
+                if (hashtable.Keys.Count > 2) return false;
+            }
+            return true;
         }
     }
 }
