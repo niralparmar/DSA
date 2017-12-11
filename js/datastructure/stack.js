@@ -1,3 +1,4 @@
+var util = require('../util');
 function Stack() {
     this.dataStore = [];
     this.top = 0;
@@ -27,23 +28,19 @@ function clear() {
 function length() {
     return this.top;
 }
-
-function print(str) {
-    console.log(str);
-}
 var s = new Stack();
 s.push("David");
 s.push("Raymond");
 s.push("Bryan");
-print("length: " + s.length());
-print(s.peek());
+util.print("length: " + s.length());
+util.print(s.peek());
 var popped = s.pop();
-print("The popped element is: " + popped);
-print(s.peek());
+util.print("The popped element is: " + popped);
+util.print(s.peek());
 s.push("Cynthia");
-print(s.peek());
+util.print(s.peek());
 s.clear();
-print("length: " + s.length());
-print(s.peek());
+util.print("length: " + s.length());
+util.print(s.peek());
 s.push("Clayton");
-print(s.peek());
+util.print(s.peek());
