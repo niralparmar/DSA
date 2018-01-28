@@ -125,13 +125,44 @@
             Stack<char> stack = new Stack<char>();
             foreach (char c in s)
             {
-                if(c == '(' || c == '{' || c == '['){
+                if (c == '(' || c == '{' || c == '[')
+                {
                     stack.Push(c);
                 }
-                else{
-                
+                else
+                {
+                    char lastBrace = stack.Peek();
+                    switch (c)
+                    {
+                        case ')':
+                            if (lastBrace == '(')
+                            {
+                                stack.Pop();
+                                break;
+                            }
+                            else return false;
+                        case '}':
+                            if (lastBrace == '{')
+                            {
+                                stack.Pop();
+                                break;
+                            }
+                            else return false;
+                        case ']':
+                            if (lastBrace == '[')
+                            {
+                                stack.Pop();
+                                break;
+                            }
+                            else return false;
+
+                        default:
+                            break;
+                    }
+                    
                 }
             }
+            if (stack.Count == 0) return true;
             return false;
         }
     }

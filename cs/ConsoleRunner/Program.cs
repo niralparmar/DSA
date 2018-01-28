@@ -1,7 +1,7 @@
 ﻿//#define TREE
 //#define SORTING
 //#define BIT
-#define LINKEDLIST
+//#define LINKEDLIST
 namespace ConsoleRunner
 {
     using System;
@@ -220,7 +220,22 @@ namespace ConsoleRunner
             updateBitMask(9, 2, 2);
             UpdateBit();
 #endif
+            //Console.WriteLine(Algorithms.Stack.isBalancedBracket("{}[]()"));
+            //Console.WriteLine(Algorithms.Stack.isBalancedBracket("{[}]}"));
+            //Algorithms.Arrays.FinalPrice(new int[] { 5, 1, 3, 4, 6, 2 });
+            //Algorithms.Arrays.FinalPrice(new int[] { 1, 3, 3, 2, 5 });
+            //Algorithms.Arrays.FinalPrice(new int[] { 1, 2, 3, 4, 5 });
+            Algorithms.Arrays.FinalPrice(new int[] { 0, 0 });
 
+            Console.WriteLine();
+            //Algorithms.Arrays.FinalPriceNew(new int[] { 5, 1, 3, 4, 6, 2 });
+            //Console.WriteLine();
+            //Algorithms.Arrays.FinalPriceNew(new int[] { 1, 3, 3, 2, 5 });
+            //Console.WriteLine();
+            //Algorithms.Arrays.FinalPriceNew(new int[] { 1, 2, 3, 4, 5 });
+            //Console.WriteLine();
+            //Algorithms.Arrays.FinalPriceNew(new int[] { 0, 0 });
+            Algorithms.Arrays.FindPair(new int[] { 8, 7, 2, 5, 3, 1 },10);
             Console.ReadLine();
         }
         public static DS.LinkedList GetLinkedList(int[] data)
